@@ -16,15 +16,4 @@ class Item < ApplicationRecord
   validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank" }
   validates :days_to_ship_id, numericality: {other_than: 1, message: "can't be blank" }
 
-
-
-#   | name               | string | null: false |
-# | content               | text | null: false |
-# | category_id               | integer | null: false |
-# | status_id               | integer | null: false |
-# | fee_status_id               | integer | null: false |
-# | prefecture_id               | integer | null: false |
-# | days_to_ship_id               | integer | null: false |
-# | price               | integer | null: false |
-# | user              | references | null: false, foreign_key: true |
 end

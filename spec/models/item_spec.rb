@@ -28,28 +28,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Content can't be blank")
       end
-      it "category_idが未選択では出品できない" do
-        @item.category_id = ""
+      it "category_idに「---」が選択されている場合は出品できない" do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it "status_idが未選択では出品できない" do
-        @item.status_id = ""
+      it "status_idに「---」が選択されている場合は出品できない" do
+        @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
-      it "fee_status_idが未選択では出品できない" do
-        @item.fee_status_id = ""
+      it "fee_status_idに「---」が選択されている場合は出品できない" do
+        @item.fee_status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Fee status can't be blank")
       end
-      it "prefecture_idが未選択では出品できない" do
-        @item.prefecture_id = ""
+      it "prefecture_idに「---」が選択されている場合は出品できない" do
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it "days_to_ship_idが未選択では出品できない" do
-        @item.days_to_ship_id = ""
+      it "days_to_ship_idに「---」が選択されている場合は出品できない" do
+        @item.days_to_ship_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship can't be blank")
       end
@@ -72,6 +72,11 @@ RSpec.describe Item, type: :model do
         @item.price = "５００"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it "userが紐づいていなければ出品できない" do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end

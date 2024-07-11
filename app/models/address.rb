@@ -1,5 +1,6 @@
 class Address < ApplicationRecord
   belongs_to :order
+  belongs_to :prefecture
 
   validates :postcode,      presence: true
   validates :prefecture_id, presence: true

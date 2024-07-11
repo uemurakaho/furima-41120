@@ -1,15 +1,14 @@
 class CreateAddresses < ActiveRecord::Migration[7.0]
   def change
     create_table :addresses do |t|
-
+      t.string :postcode,       null: false
+      t.integer :prefecture_id, null: false
+      t.string :city,           null: false
+      t.string :block,          null: false
+      t.string :building
+      t.string :phone_number,   null: false
+      t.references :order,      null: false, foreign_key: true
       t.timestamps
     end
   end
 end
-| postcode               | string | null: false |
-| prefecture_id               | integer | null: false |
-| city               | string | null: false |
-| block               | string | null: false |
-| building               | string |  |
-| phone_number               | string | null: false |
-| order               | references | null: false, foreign_key: true |

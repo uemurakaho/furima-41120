@@ -2,14 +2,19 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   def index
     @item = Item.find(params[:item_id])
+  end
+
+  def create
     @order = Order.new(order_params)
     @address = Address.new(address_params)
-    if @order.save && @address.save
+    if @order.valid?
+      @order.save
       redirect_to root_path
     else
       render :index, status: :unprocessable_entity
     end
   end
+
 
   private
   def order_params

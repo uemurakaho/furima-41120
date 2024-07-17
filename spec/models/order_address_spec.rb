@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
   before do
-    @order_address = FactoryBot.build(:order_address)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id )
+    sleep 0.1
   end
 
   describe '商品購入' do
@@ -27,7 +30,7 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Postcode is invalid. Include hyphen(-)")
       end
-      it "postcodeに「3桁ハイフン4桁」でないと購入できない" do
+      it "postcodeは「3桁ハイフン4桁」でないと購入できない" do
         @order_address.postcode = '1234-567'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Postcode is invalid. Include hyphen(-)")
